@@ -1,0 +1,12 @@
+layout {
+    pane split_direction="vertical" {
+        pane {
+            command "nvim"
+            args "src/index.ts"
+        }
+        pane {
+            command "npm"
+            args "run" "dev"
+        }
+    }
+}

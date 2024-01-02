@@ -1,14 +1,17 @@
 {
-  "name": "ts",
+  "name": "farey-add",
   "version": "0.0.1-0",
   "main": "index.js",
   "license": "MIT",
   "author": "Amal Sudama <cds-sudama@gmail.com>",
   "scripts": {
+    "z": "zellij --layout layout.kdl",
+    "dev": "nodemon",
     "test": "ts-node src"
   },
   "devDependencies": {
     "@types/node": "^18.11.7",
+    "nodemon": "^3.0.2",
     "ts-node": "^10.9.1"
   }
 }
