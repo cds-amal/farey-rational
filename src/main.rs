@@ -15,9 +15,13 @@ struct Fraction {
     denominator: u64,
     value: f64,
 }
-
+/// Format the fraction as follows:
+///               27450985
+/// 0.33333339 ≈ ----------
+///               82352941
 impl fmt::Display for Fraction {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+
         let numerator_str = self.numerator.to_string();
         let denominator_str = self.denominator.to_string();
 
