@@ -1,19 +1,33 @@
-$ frac(0,1) <- 0.5 -> frac(1,1) $
-$ frac(1,2) <- 0.6666666666666666 -> frac(1,1) $
-$ frac(2,3) <- 0.75 -> frac(1,1) $
-$ frac(3,4) <- 0.8 -> frac(1,1) $
-$ frac(4,5) <- 0.8333333333333334 -> frac(1,1) $
-$ frac(4,5) <- 0.8181818181818182 -> frac(5,6) $
-$ frac(9,11) <- 0.8235294117647058 -> frac(5,6) $
-$ frac(14,17) <- 0.8260869565217391 -> frac(5,6) $
-$ frac(19,23) <- 0.8275862068965517 -> frac(5,6) $
-$ frac(19,23) <- 0.8269230769230769 -> frac(24,29) $
-$ frac(43,52) <- 0.8271604938271605 -> frac(24,29) $
-$ frac(43,52) <- 0.8270676691729323 -> frac(67,81) $
-$ frac(43,52) <- 0.827027027027027 -> frac(110,133) $
-$ frac(43,52) <- 0.8270042194092827 -> frac(153,185) $
-$ frac(43,52) <- 0.8269896193771626 -> frac(196,237) $
-$ frac(239,289) <- 0.8269961977186312 -> frac(196,237) $
-$ frac(435,526) <- 0.8269986893840104 -> frac(196,237) $
-$ frac(631,763) <- 0.827 -> frac(196,237) $
-$ frac(827,1000) $
+## Rational number approximation
+
+Approximates a real number `x` using the Farey sequence method. It returns a `Fraction` object representing the closest approximation it can find within machine precision.
+
+- The Farey sequence is used to find fractions close to a given real number.
+- It iteratively finds the mediant of two fractions (the numerator and denominator of the mediant are the sums of the numerators and denominators of the two fractions, respectively) until it gets close enough to the target number.
+- The mediant is a concept in mathematics, particularly in number theory, where it is defined as the fraction `(a+c)/(b+d)` for two fractions `a/b` and `c/d`.
+
+
+For more information about the mediant and the Farey sequence, you might find these resources helpful:
+- [Mediant on Wikipedia](https://en.wikipedia.org/wiki/Mediant_(mathematics))
+- [Farey sequence on Wikipedia](https://en.wikipedia.org/wiki/Farey_sequence)
+
+
+
+### Rust
+
+This solution reads from the command line.
+
+```console
+cd rs
+cargo run -- --number .547
+```
+
+
+### TypeScript
+
+This solution hard codes the fixed point number to approximate; change the value in the code
+```console
+cd ts
+npm ci
+npm run test
+```
