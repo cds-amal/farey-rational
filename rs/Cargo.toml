@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 bpaf = { version = "0.9", features = ["derive"] }
+impl_ops = "0.1.1"
