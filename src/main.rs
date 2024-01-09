@@ -31,11 +31,10 @@ impl fmt::Display for Fraction {
         let separator = "-".repeat(max_fraction_length+2);
         let mut value_str = format!("{:0.precision$}", self.value).trim().to_string();
 
-        // Trim trailing zeroes
+        // get rid of trailing zeroes
         while value_str.ends_with('0') {
             value_str.pop();
         }
-        // If the last character is a decimal point, remove it as well
         if value_str.ends_with('.') {
             value_str.pop();
         }
@@ -43,10 +42,12 @@ impl fmt::Display for Fraction {
         let buf_len = value_str.len() + 4;
         let buf = " ".repeat(buf_len);
 
-        write!(f, "\n{}{}\n{} ≈ {}\n{}{}\n",
+        write!(f, "\n{}{}\n{} ≈ {}\n{}{}\n\n$ {} ≈ frac({},{}) $",
             buf, numerator_str,
             value_str, separator,
-            buf, denominator_str
+            buf, denominator_str,
+            value_str,
+            numerator_str, denominator_str
         )
     }
 }
@@ -61,6 +62,7 @@ fn farey(real_number: f64) -> Fraction {
     let mut mediant_denominator: f64;
     let mut mediant: f64;
     let e = f64::EPSILON;
+
     loop {
         mediant_numerator = left_numerator + right_numerator;
         mediant_denominator = left_denominator + right_denominator;
@@ -70,6 +72,28 @@ fn farey(real_number: f64) -> Fraction {
             break;
         }
 
+        let l = Fraction {
+            numerator: left_numerator as u64,
+            denominator: left_denominator as u64,
+            value: left_numerator / left_denominator,
+        };
+
+        let r = Fraction {
+            numerator: right_numerator as u64,
+            denominator: right_denominator as u64,
+            value: right_numerator / right_denominator,
+        };
+
+        // println!("{}", l);
+        // println!("{}: delta: {}", mediant, (real_number - mediant).abs());
+        // println!("{}", r);
+
+        println!("$ frac({},{}) <- {} -> frac({},{}) $",
+            left_numerator, left_denominator,
+            mediant,
+            right_numerator, right_denominator
+        );
+
         if mediant > real_number {
             right_numerator = mediant_numerator;
             right_denominator = mediant_denominator;
@@ -78,6 +102,14 @@ fn farey(real_number: f64) -> Fraction {
             left_denominator = mediant_denominator;
         }
     }
+
+    println!("$ frac({},{}) <- {} -> frac({},{}) $",
+        left_numerator, left_denominator,
+        mediant,
+        right_numerator, right_denominator
+    );
+
+    // println!("{}: delta: {}", mediant, (real_number - mediant).abs());
 
     return Fraction {
         numerator: mediant_numerator as u64,
