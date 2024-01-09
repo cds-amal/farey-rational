@@ -1,3 +1,9 @@
+## How to run
+
+```console
+cargo run -- --number .456
+```
+
 $ frac(0,1) <- 0.5 -> frac(1,1) $
 $ frac(1,2) <- 0.6666666666666666 -> frac(1,1) $
 $ frac(2,3) <- 0.75 -> frac(1,1) $
